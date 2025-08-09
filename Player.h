@@ -1,11 +1,13 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <string>
-using namespace std;
+#include "Move.h"
+
 class Player {
 public:
-    virtual char makeMove() = 0;
-    virtual string getName() = 0;
-    virtual ~Player() {}
+    virtual ~Player() = default;
+    virtual Move* makeMove() = 0; // ownership of returned pointer transfers to caller
+    virtual std::string getName() const = 0;
 };
-#endif
+
+#endif // PLAYER_H

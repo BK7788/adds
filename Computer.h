@@ -1,15 +1,11 @@
-#ifndef COMPUTER_H
-#define COMPUTER_H
-
+#pragma once
 #include "Player.h"
 #include <string>
-#include <vector>
 
 class Computer : public Player {
     std::string name;
 public:
-    explicit Computer(std::string name = "Computer");
+    explicit Computer(const std::string& n) : name(n) {}
+    std::string getName() override { return name; }
     Move* makeMove() override;
-    std::string getName() const override { return name; }
 };
-#endif

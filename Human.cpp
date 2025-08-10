@@ -1,13 +1,11 @@
-#pragma once
-#include "Player.h"
+#include "Human.h"
+#include "Move.h"
+#include <iostream>
 #include <string>
 
-class Human : public Player {
-    std::string name;
-public:
-    Human() : name("Human") {}                     
-    explicit Human(const std::string& n) : name(n) {}
-
-    std::string getName() override { return name; }
-    Move* makeMove() override;
-};
+Move* Human::makeMove() {
+    std::cout << "Enter Move: ";
+    std::string in;
+    if (!(std::cin >> in)) in = "Rock";
+    return Move::fromName(in);
+}

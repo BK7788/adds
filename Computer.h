@@ -5,7 +5,9 @@
 class Computer : public Player {
     std::string name;
 public:
+    Computer() : name("Computer") {}               
     explicit Computer(const std::string& n) : name(n) {}
+
     std::string getName() override { return name; }
     Move* makeMove() override;
 };

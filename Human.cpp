@@ -1,12 +1,13 @@
-#include "Human.h"
-#include "Move.h"
-#include <iostream>
+#pragma once
+#include "Player.h"
 #include <string>
 
-Move* Human::makeMove() {
-    std::cout << "Enter Move: ";
-    std::string in;
-    if (!(std::cin >> in)) in = "Rock";   // 输入失败兜底
-    return Move::fromName(in);
-}
+class Human : public Player {
+    std::string name;
+public:
+    Human() : name("Human") {}                     
+    explicit Human(const std::string& n) : name(n) {}
 
+    std::string getName() override { return name; }
+    Move* makeMove() override;
+};

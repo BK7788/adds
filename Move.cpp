@@ -20,18 +20,18 @@ protected:
     std::unordered_set<std::string> winsOver;
 public:
     explicit SimpleMove(const std::string& n, std::unordered_set<std::string> beats)
-    : name(n), winsOver(std::move(beats)) {} 32:
-    std::string getName() const override { return name; } 34:
+    : name(n), winsOver(std::move(beats)) {}
+    std::string getName() const override { return name; }
     bool defeats(const Move& other) const override {
         return winsOver.find(toLowerCopy(other.getName())) != winsOver.end();
     }
-}; 39:
+};
 
 static std::unordered_map<std::string, std::unordered_set<std::string>> RULES = {
     // Rock Paper Scissors
     {"rock",     {"scissors"}},
     {"paper",    {"rock"}},
-    {"scissors", {"paper"}}, 48:
+    {"scissors", {"paper"}},
 
     {"monkey",   {"pirate", "robot"}},
     {"robot",    {"pirate", "zombie"}},

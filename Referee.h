@@ -1,12 +1,9 @@
-#ifndef REFEREE_H
-#define REFEREE_H
-
-#include "Player.h"
+#pragma once
+class Player;
 
 class Referee {
-    public:
-    Referee();
+public:
+    Referee() = default;
+    
     Player* refGame(Player* player1, Player* player2);
 };
-
-#endif

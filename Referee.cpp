@@ -1,18 +1,19 @@
 #include "Referee.h"
+#include "Player.h"
+#include "Move.h"
 
-Referee::Referee() {};
+Player* Referee::refGame(Player* p1, Player* p2) {
+    Move* m1 = p1->makeMove();
+    Move* m2 = p2->makeMove();
 
-Player* Referee::refGame(Player* player1, Player* player2) {
-    Move* move1 = player1->makeMove();
-    Move* move2 = player2->makeMove();
+    Player* winner = nullptr;
+    const bool p1wins = m1->defeats(*m2) && !m2->defeats(*m1);
+    const bool p2wins = m2->defeats(*m1) && !m1->defeats(*m2);
 
-    if (move1->getName() == move2->getName()) {
-        return nullptr;
-    }
-    if (move1->beats(move2)) {
-        return player1;
-    } else if (move2->beats(move1)) {
-        return player2;
-    }
-    return nullptr;
+    if (p1wins)      winner = p1;
+    else if (p2wins) winner = p2;
+   
+    delete m1;
+    delete m2;
+    return winner;
 }

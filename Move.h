@@ -1,12 +1,11 @@
-#ifndef MOVE_H
-#define MOVE_H
+#pragma once
 #include <string>
 
 class Move {
-    public:
+public:
+    virtual ~Move() = default;
     virtual std::string getName() const = 0;
-    virtual bool beats(const Move* other) const = 0;
-    virtual ~Move() {};
-};
+    virtual bool defeats(const Move& other) const = 0;
 
-#endif
+    static Move* fromName(const std::string& name);
+};

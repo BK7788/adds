@@ -13,7 +13,6 @@ Player* Referee::refGame(Player* p1, Player* p2) {
     if (p1wins)      winner = p1;
     else if (p2wins) winner = p2;
 
-
     delete m1;
     delete m2;
     return winner;

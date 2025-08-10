@@ -1,13 +1,17 @@
-#pragma once
+#ifndef HUMAN_H
+#define HUMAN_H
+
 #include "Player.h"
+#include <iostream>
 #include <string>
 
 class Human : public Player {
-    std::string name;
-public:
-    Human() : name("Human") {}
-    explicit Human(const std::string& n) : name(n) {}
-
-    std::string getName() const override { return name; }
-    Move* makeMove() override;   
+    private:
+        std::string name;
+    public:
+        Human( std::string name = "Human");
+        Move* makeMove() override;
+        std::string getName() override;
 };
+
+#endif

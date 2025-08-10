@@ -1,15 +1,19 @@
-#include <iostream>
-#include "Referee.h"
 #include "Human.h"
 #include "Computer.h"
+#include "Referee.h"
+#include <iostream>
 
 int main() {
-    Referee ref;
-    Human    h("Human");
-    Computer c("Computer");
+    Human human ("Mei");
+    Computer computer;
+    Referee referee;
 
-    auto* winner = ref.refGame(&h, &c);
-    if (winner) std::cout << winner->getName() << "\n";
-    else        std::cout << "Tie\n";
+    Player* winner = referee.refGame(&human, &computer);
+    
+    if (winner == nullptr) {
+        std::cout << "It's a Tie" << std::endl;
+    } else {
+        std::cout << winner->getName() << " Wins" << std::endl;
+    }
     return 0;
 }

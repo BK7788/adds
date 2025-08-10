@@ -1,11 +1,14 @@
-#pragma once
-#include <string>
+#ifndef PLAYER_H
+#define PLAYER_H
 
-class Move;  
+#include <string>
+#include "Move.h"
 
 class Player {
-public:
-    virtual ~Player() = default;
-    virtual Move* makeMove() = 0;              
-    virtual std::string getName() const = 0;   
+    public:
+    virtual Move* makeMove() = 0;
+    virtual std::string getName() = 0;
+    virtual ~Player() {}
 };
+
+#endif

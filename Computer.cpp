@@ -1,18 +1,18 @@
 #include "Computer.h"
-#include "Move.h"
-#include <vector>
-#include <random>
-#include <chrono>
+
+#include "Rock.h"
+#include "Paper.h"
+#include "Scissors.h"
+#include "Monkey.h"
+#include "Robot.h"
+#include "Pirate.h"
+#include "Ninja.h"
+#include "Zombie.h"
 
 Move* Computer::makeMove() {
-    static const std::vector<std::string> names = {
-        "Rock","Paper","Scissors","Robot","Monkey","Pirate","Ninja","Zombie"
-    };
-    static thread_local std::mt19937 rng(
-        static_cast<unsigned int>(
-            std::chrono::steady_clock::now().time_since_epoch().count()
-        )
-    );
-    std::uniform_int_distribution<int> dist(0, static_cast<int>(names.size()) - 1);
-    return Move::fromName(names[dist(rng)]);
+    return new Rock();
+}
+
+std::string Computer::getName() {
+    return "Computer";
 }

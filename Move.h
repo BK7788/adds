@@ -5,7 +5,7 @@
 
 class Move {
 public:
-    virtual ~Move() = default; 12:
+    virtual ~Move() = default;
     virtual std::string getName() const = 0;
     virtual bool defeats(const Move& other) const = 0;
 };

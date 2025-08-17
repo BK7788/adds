@@ -1,19 +1,21 @@
-#include "Human.h"
-#include "Computer.h"
-#include "Referee.h"
 #include <iostream>
+#include "Truckloads.h"
+#include "EfficientTruckloads.h"
+#include "Reverser.h"
 
 int main() {
-    Human human ("Mei");
-    Computer computer;
-    Referee referee;
+    Truckloads t;
+    std::cout << t.numTrucks(14,3) << "\n";  
+    std::cout << t.numTrucks(15,1) << "\n";   
+    std::cout << t.numTrucks(1024,5) << "\n"; 
 
-    Player* winner = referee.refGame(&human, &computer);
-    
-    if (winner == nullptr) {
-        std::cout << "It's a Tie" << std::endl;
-    } else {
-        std::cout << winner->getName() << " Wins" << std::endl;
-    }
+    EfficientTruckloads et;
+    std::cout << et.numTrucks(1024,5) << "\n"; 
+
+    Reverser r;
+    std::cout << r.reverseDigit(12345) << "\n";     
+    std::cout << r.reverseDigit(-7) << "\n";        
+    std::cout << r.reverseString("abcde") << "\n";  
+    std::cout << r.reverseString("") << "\n";       
     return 0;
 }

@@ -1,21 +1,18 @@
+#include "Finder.h"
 #include <iostream>
-#include "Truckloads.h"
-#include "EfficientTruckloads.h"
-#include "Reverser.h"
+using namespace std;
 
 int main() {
-    Truckloads t;
-    std::cout << t.numTrucks(14,3) << "\n";  
-    std::cout << t.numTrucks(15,1) << "\n";   
-    std::cout << t.numTrucks(1024,5) << "\n"; 
+    Finder f;
+    string s1 = "abcde";
+    string s2 = "ace";
 
-    EfficientTruckloads et;
-    std::cout << et.numTrucks(1024,5) << "\n"; 
+    vector<int> res = f.findSubstrings(s1, s2);
 
-    Reverser r;
-    std::cout << r.reverseDigit(12345) << "\n";     
-    std::cout << r.reverseDigit(-7) << "\n";        
-    std::cout << r.reverseString("abcde") << "\n";  
-    std::cout << r.reverseString("") << "\n";       
+    for (int pos : res) {
+        cout << pos << " ";
+    }
+    cout << endl;
+
     return 0;
 }

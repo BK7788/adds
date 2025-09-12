@@ -1,6 +1,7 @@
 #include "BigNumCalc.h"
 #include <algorithm>
 #include <cctype>
+#include <vector>
 
 using std::list;
 using std::string;
@@ -48,4 +49,44 @@ list<int> BigNumCalc::sub(const list<int>& a, const list<int>& b) {
     list<int> r;
     auto ia = a.begin(), ib = b.begin();
     int borrow = 0;
-    whi
+    while (ia != a.end() || ib != b.end()) {
+        int da = ia != a.end() ? *ia++ : 0;
+        int db = ib != b.end() ? *ib++ : 0;
+        int d = da - borrow - db;
+        if (d < 0) { d += 10; borrow = 1; } else borrow = 0;
+        r.push_back(d);
+    }
+    trim(r);
+    return r;
+}
+
+list<int> BigNumCalc::mul(const list<int>& a, const list<int>& b) {
+    if ((a.size() == 1 && *a.begin() == 0) || (b.size() == 1 && *b.begin() == 0)) return list<int>{0};
+    size_t na = a.size(), nb = b.size();
+    std::vector<int> v(na + nb, 0);
+    size_t i = 0;
+    for (int da : a) {
+        size_t j = 0;
+        int carry = 0;
+        for (int db : b) {
+            size_t idx = i + j;
+            long long cur = v[idx] + da * db + carry;
+            v[idx] = static_cast<int>(cur % 10);
+            carry = static_cast<int>(cur / 10);
+            ++j;
+        }
+        size_t idx = i + j;
+        while (carry) {
+            long long cur = v[idx] + carry;
+            v[idx] = static_cast<int>(cur % 10);
+            carry = static_cast<int>(cur / 10);
+            ++idx;
+        }
+        ++i;
+    }
+    while (v.size() > 1 && v.back() == 0) v.pop_back();
+    list<int> r;
+    for (int d : v) r.push_back(d);
+    trim(r);
+    return r;
+}
